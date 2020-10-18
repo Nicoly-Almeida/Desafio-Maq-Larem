@@ -1,0 +1,148 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    
+    <!-- CSS Personalizado -->
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+
+    <title>My Contacts</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar text-center" style="background: #A00314 !important;">
+      <!-- Logo da Navbar -->
+
+      
+      <a href="./login.html" style=" float:left !important">
+        <img src="{% static "img/listras.png" %}" style="" height="20px" width="25px"/>
+        <h5 class="text-white ml-3  mt-1" style=" float:right !important; font-family: 30px"> <b>My Contacts</b></h5>
+      </a>  
+
+      <!-- Botões Login e Cadastro -->
+      <div class="botao"  role="group" aria-label="Basic example">
+        <a href="/logout" class="btn btn-light" style="color: #A00314"><i class="fa fa-sign-in" aria-hidden="true" style="font-size:15px; color: #A00314 !important"></i>  <p class="d-none d-sm-inline-block" style="float:right;margin-bottom:0px; margin-left:7px;">Sair</p></a>
+      </div>      
+    </nav>
+
+    <!--Conteúdo!-->
+    <div class="container text-center" style="margin-top:80px">
+      <h1 style="font-size: 70px; color:#A00314;" class="mb-3" ><b> Contatos </b></h1>
+
+      <ul class="nav nav-tabs" >
+        <li class="nav-item borda-redonda" >
+          <a class="nav-link active borda-redonda" style="background-color:#A00314; border-bottom: #A00314 1px solid;  color:white"href="/contatos"><b>Contatos</b></a>
+        </li>
+      </ul>
+
+      <ul class="list-group borda-quadrada">
+        <li class="list-group-item borda-quadrada" aria-disabled="true" style="background: #A00314">
+          <div class="form-check text-left">
+            <input class=" mt-2 form-check-input" onclick="todos()" type="checkbox" value="" id="todos">
+            <label class=" mt-1 form-check-label" for="defaultCheck1" style="color:white">
+              <b>Todos</b>
+            </label> 
+            <button type="button" class=" pt-1 pb-1 btn btn-light " style="color: #A00314; font-size: 15px; float:right" data-toggle="modal" data-target="#NovoContato"><b>+ Novo Contato</b></button>
+          </div>
+        </li>
+      </ul>
+      <ul style="padding-left:0px" class="mb-0">
+        {% for contato in listar %}
+        <li class="list-group-item" style="border: #A00314 2px solid">
+          <div class="form-check text-left">
+            <input class=" mt-2 form-check-input" name="contato" type="checkbox" value="" id="defaultCheck1" style="border: #a00314 solid 2px !important">
+            <label class=" mt-1 form-check-label" for="defaultCheck1" style="color:#A00314">
+              <b>{{ contato.nome }}</b>
+              <p style="color:#A00314"> {{ contato.celular }} </p>
+            </label> 
+
+
+            <div style="float:right">
+              <a href="/contato/{{ contato.id }}" class="fa fa-trash-o" aria-hidden="true" style="color:#A00314"></a>
+            </div>
+
+          </div>
+
+        </li>
+        {% endfor %}
+
+      </ul>
+    </div>  
+
+    <!-- Modal -->
+    <div class="modal fade" id="NovoContato" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel" style="color: #a00314"><b>Novo Contato</b></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form method="POST"> {% csrf_token %}
+              <div class="form-row">
+                <div class="form-group col-md">
+                  <!-- Nome!-->
+                  <input type="text" class="form-control mt-0  " name="nome" placeholder="Nome" style="border-top:1px solid #fff; border-right:1px solid #fff; border-left:1px solid #fff; border-bottom:1px solid #A00314;">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <input type="tel" class="form-control mt-0" name="celular" id="inputEmail4" placeholder="Celular" style="border-top:1px solid #fff; border-right:1px solid #fff; border-left:1px solid #fff; border-bottom:1px solid #A00314;">
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="email" class="form-control mt-0" name="email" id="inputEmail4" placeholder="Email" style="border-top:1px solid #fff; border-right:1px solid #fff; border-left:1px solid #fff; border-bottom:1px solid #A00314;">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md">
+                  <input type="text" class="form-control" name="endereco" id="inputPassword4" placeholder="Endereço" style="border-top:1px solid #fff; border-right:1px solid #fff; border-left:1px solid #fff; border-bottom:1px solid #A00314;">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <input type="text" class="form-control" name="dia" id="inputPassword4" placeholder="Dia" style="border-top:1px solid #fff; border-right:1px solid #fff; border-left:1px solid #fff; border-bottom:1px solid #A00314;">
+                </div>
+                <div class="form-group col-md-4">
+                  <input type="text" class="form-control" name="mes" id="inputPassword4" placeholder="Mês" style="border-top:1px solid #fff; border-right:1px solid #fff; border-left:1px solid #fff; border-bottom:1px solid #A00314;">
+                </div>
+                <div class="form-group col-md-4">
+                  <input type="text" class="form-control" name="ano" id="inputPassword4" placeholder="Ano" style="border-top:1px solid #fff; border-right:1px solid #fff; border-left:1px solid #fff; border-bottom:1px solid #A00314;">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn text-center" style="background-color:#a00314; float:center; color:white"><b>Salvar</b></button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script>
+      function todos(){
+        doc = document.getElementsByName("contato")
+        doc1 = document.getElementById("todos")
+        for (let i = 0; i < doc.length; i++){
+          doc[i].checked = doc1.checked
+        }
+      }
+    </script>
+  </body>
+</html>
+

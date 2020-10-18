@@ -1,0 +1,74 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap');
+    </style> -->
+        
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    
+    <!-- CSS Personalizado -->
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+
+    <title>My Notebook</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar text-center" style="background: #A00314 !important;">
+      <!-- Logo da Navbar -->
+
+      
+      <a href="" style=" float:left !important">
+        <img src="{% static "img/listras.png" %}" class="mt-1" height="20px" width="25px"/>
+        <h5 class="text-white ml-3  mt-1 b-3" style=" float:right !important; "> <b>My Contacts</b></h5>
+      </a>        
+    </nav>  
+
+
+    <!-- Conteúdo -->
+    <div class="container text-center" style="margin-top:100px">
+      <h1 style="font-size: 90px; color:#A00314"><b>Login</b></h1>
+      <!-- Login -->
+      <form class="container" method="POST" style="width:300px"> {% csrf_token %}
+        <!-- Email -->
+        <div class="form-row">
+          <div class="col">
+            <input type="text" class="form-control text-center my-4 ml-0" name="username" id="email" placeholder="Email" style="border-top:1px solid #fff; border-right:1px solid #fff; border-left:1px solid #fff; border-bottom:1px solid #A00314;" required>
+          </div>
+        </div>
+        <!-- Senha -->
+        <div class="form-row">
+          <div class="col">
+            <input type="password" class="form-control text-center ml-0" name="password" id="senha" placeholder="Senha" style="border-top:1px solid #fff; border-right:1px solid #fff; border-left:1px solid #fff; border-bottom:1px solid #A00314;" required>
+          </div>
+        </div>
+        <!-- Não possui conta? -->
+        <div class="text-center mt-0 mb-3 h-1" style="height:10px;">
+          <small id="emailHelp" class="form-text text-muted cadastro text-success">Não possui uma conta? <a href="/cadastro"   class=" text-decoration-none" style="color:#A00314; height:10px"> Cadastre-se </a></small>
+        </div>
+        <div class="text-center mt-4 pt-2 pb-2 mb-4">
+          <!-- <a href="./books.html"><button type="button" class="btn borda-redonda" style="background-color: #A00314;color:white; padding-left: 50px;padding-right:50px; border-radius: 50px !important;"><b style="font-size:22px">ENTRAR</b></button></a> -->
+          <button type="submit" class="btn borda-redonda" style="background-color: #A00314;color:white; padding-left: 50px;padding-right:50px; border-radius: 50px !important;"><b style="font-size:22px">ENTRAR</b></button>
+        </div>
+      </form>
+    </div>
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>
