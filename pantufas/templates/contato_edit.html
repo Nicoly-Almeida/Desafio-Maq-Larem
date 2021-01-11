@@ -1,0 +1,86 @@
+{% load static %}
+{% load widget_tweaks %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    
+    <!-- CSS Personalizado -->
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+
+    <title>My Contacts</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar text-center" style="background: #A00314 !important;">
+      <!-- Logo da Navbar -->
+
+      
+      <a href="" style=" float:left !important">
+        <img src="{% static "img/listras.png" %}" class="mt-1" height="20px" width="25px"/>
+        <h5 class="text-white ml-3  mt-1" style=" float:right !important; font-family: 30px"> <b>My Contacts</b></h5>
+      </a>        
+    </nav>
+    
+    <!-- Conteúdo -->
+    <div class="container text-center w-75" style="margin-top:80px">
+      <h1 style="font-size: 80px; color:#A00314;" class="mb-3" ><b> Editar Contato</b></h1>
+     
+      <!-- Cadastro -->
+        <form method="POST"> {% csrf_token %}
+              <div class="form-row">
+                <div class="form-group col-md">
+                  <!-- Nome!-->
+                  {{ form.nome|add_class:'form-control'|append_attr:'placeholder:Nome'|append_attr:'data-rule:"minlen:10"' }}
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  {{ form.celular|add_class:'form-control'|append_attr:'placeholder:Celular'|append_attr:'data-rule:"minlen:10"' }}
+                </div>
+                <div class="form-group col-md-6">
+                  {{ form.email|add_class:'form-control'|append_attr:'placeholder:Email'|append_attr:'data-rule:"minlen:10"' }}
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md">
+                  {{ form.endereco|add_class:'form-control'|append_attr:'placeholder:Endereço'|append_attr:'data-rule:"minlen:10"' }}
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                 {{ form.dia|add_class:'form-control'|append_attr:'placeholder:Dia'|append_attr:'data-rule:"minlen:10"' }}
+                </div>
+                <div class="form-group col-md-4">
+                  {{ form.mes|add_class:'form-control'|append_attr:'placeholder:Mês'|append_attr:'data-rule:"minlen:10"' }}
+                </div>
+                <div class="form-group col-md-4">
+                  {{ form.ano|add_class:'form-control'|append_attr:'placeholder:Ano'|append_attr:'data-rule:"minlen:10"' }}
+                </div>
+              </div>
+
+            <div class="text-center mb-5 mt-4">
+                <button type="submit"
+                 class="btn borda-redonda" style="background-color: #A00314;color:white; padding-left: 50px;padding-right:50px; border-radius: 50px !important;"
+                ><span style="font-size:22px"><b>Salvar</b></span></button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>
+

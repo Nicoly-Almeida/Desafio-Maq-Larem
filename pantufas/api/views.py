@@ -5,6 +5,8 @@ from pprint import pprint
 from api.models import Usuario, Contato
 from django.contrib.auth.decorators import login_required
 
+from api.forms import ContatoForm
+
 
 def loginView(request):
     if request.user.is_authenticated:
@@ -40,6 +42,7 @@ def registerView(request):
     
     return HttpResponse("")
 
+
 @login_required(login_url = "/")
 def contatoView(request):
     if request.method == "GET":
@@ -68,12 +71,12 @@ def contatoView(request):
         user.save()
         return redirect("/contatos")
 
-    
 
 @login_required(login_url = "/")
 def logoutView(request):
     logout(request)
     return redirect("/")
+
 
 @login_required(login_url = "/")
 def deleteView(request, id):
@@ -84,3 +87,23 @@ def deleteView(request, id):
     contato.delete()
     return redirect("/contatos")
 
+
+@login_required(login_url= '/')
+def editView(request, id):
+
+    contato = Contato.objects.get(id = id)
+
+    form = ContatoForm(instance=contato)
+
+    if request.method == 'POST':
+
+        form = ContatoForm(request.POST, instance=contato)
+        if form.is_valid():
+            form.save()
+            return redirect("/contatos")
+
+    context = {
+        'contato': contato,
+        'form': form
+    }
+    return render(request, "contato_edit.html", context)

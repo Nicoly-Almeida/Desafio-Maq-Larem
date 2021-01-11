@@ -49,8 +49,15 @@
             <input class=" mt-2 form-check-input" onclick="todos()" type="checkbox" value="" id="todos">
             <label class=" mt-1 form-check-label" for="defaultCheck1" style="color:white">
               <b>Todos</b>
-            </label> 
+            </label>
+
+            <form class="d-flex">
+              <input class=" w-25 form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-success" type="submit">Search</button>
+            </form>
+
             <button type="button" class=" pt-1 pb-1 btn btn-light " style="color: #A00314; font-size: 15px; float:right" data-toggle="modal" data-target="#NovoContato"><b>+ Novo Contato</b></button>
+
           </div>
         </li>
       </ul>
@@ -62,11 +69,14 @@
             <label class=" mt-1 form-check-label" for="defaultCheck1" style="color:#A00314">
               <b>{{ contato.nome }}</b>
               <p style="color:#A00314"> {{ contato.celular }} </p>
-            </label> 
-
+            </label>
 
             <div style="float:right">
-              <a href="/contato/{{ contato.id }}" class="fa fa-trash-o" aria-hidden="true" style="color:#A00314"></a>
+              <a href="/contato/{{ contato.id }}/delete" class="fa fa-trash-o" aria-hidden="true" style="color:#A00314"></a>
+            </div>
+
+            <div style="float:right">
+              <a href="/contato/{{ contato.id }}/edit" class="fa fa-pencil-square-o" aria-hidden="true" style="color:#A00314"></a>
             </div>
 
           </div>

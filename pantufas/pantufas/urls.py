@@ -23,5 +23,6 @@ urlpatterns = [
     path('cadastro/', views.registerView),
     path('contatos/', views.contatoView),
     path('logout/', views.logoutView),
-    path("contato/<int:id>", views.deleteView),
+    path("contato/<int:id>/delete", views.deleteView),
+    path("contato/<int:id>/edit", views.editView),
 ]
