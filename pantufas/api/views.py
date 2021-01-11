@@ -46,7 +46,10 @@ def registerView(request):
 @login_required(login_url = "/")
 def contatoView(request):
     if request.method == "GET":
-        listar_contatos = request.user.contatos.all()
+        if "q" in request.GET:
+            listar_contatos = request.user.contatos.filter(nome__contains=request.GET["q"])
+        else:
+            listar_contatos = request.user.contatos.all()
         lista = []
         for contato in listar_contatos:
             lista.append(contato)
